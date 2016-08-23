@@ -4,7 +4,7 @@ import algorithms.mazeGenerators.*;
 import algorithms.search.*;
 // second upload
 // first download
-// upload from laptop
+
 /**
  * This class run a demo of the project
  */
