@@ -4,6 +4,9 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * This class represent compressor for maze3d (from any stream)
+ */
 public class MyCompressorOutputStream extends OutputStream {
 
 	private OutputStream out;
@@ -11,6 +14,10 @@ public class MyCompressorOutputStream extends OutputStream {
 	private final int sizeOfBuffer = 255;
 	private int currentBufferSize;
 	
+	/**
+	 * Constructor
+	 * @param out OutputStream
+	 */
 	public MyCompressorOutputStream(OutputStream out) {
 		this.out = out;
 		this.outBuff = new BufferedOutputStream(this.out, this.sizeOfBuffer);
@@ -23,11 +30,11 @@ public class MyCompressorOutputStream extends OutputStream {
 	 */
 	@Override
 	public void write(byte[] b) throws IOException {
-		int currentByteValue = b[0];
+		int currentByteValue = b[9];
 		// Count zero/ones from the array
 		int counter = 1;
-		
-		for (int i = 1; i < b.length; i++) {
+		this.outBuff.write(b, 0, 9);
+		for (int i = 10; i < b.length; i++) {
 			if (b[i] == currentByteValue) {
 				counter++;
 			}
@@ -59,13 +66,14 @@ public class MyCompressorOutputStream extends OutputStream {
 		else return false;
 	}
 
+	/**
+	 * this method write byte to the OutputStream out data member
+	 * @param arg0 int, the byte to write to the output stream
+	 * @throws IOException
+	 */
 	@Override
 	public void write(int arg0) throws IOException {
 		this.out.write(arg0);
-	}
-
-	public int getCurrentBufferSize() {
-		return currentBufferSize;
 	}
 
 }
