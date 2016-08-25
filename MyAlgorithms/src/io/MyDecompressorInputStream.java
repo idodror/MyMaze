@@ -5,8 +5,6 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.sun.corba.se.spi.orbutil.fsm.Input;
-
 public class MyDecompressorInputStream extends InputStream {
 
 	private InputStream in;
