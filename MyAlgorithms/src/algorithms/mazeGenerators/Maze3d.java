@@ -33,6 +33,40 @@ public class Maze3d {
 	}
 	
 	/**
+	 * Constructor
+	 * Get a decompressed byte[] and build a maze from it
+	 * @throws IndexOutOfBoundsException if the start/goal position isn't valid position
+	 */
+	public Maze3d(byte[] mazeByteArr) throws IndexOutOfBoundsException {
+		this.floors = mazeByteArr[0];
+		this.rows = mazeByteArr[1];
+		this.cols = mazeByteArr[2];
+		maze3d = new int [this.floors][this.rows][this.cols];
+		Position startPos = new Position(mazeByteArr[3], mazeByteArr[4], mazeByteArr[5]);
+		Position goalPos = new Position(mazeByteArr[6], mazeByteArr[7], mazeByteArr[8]);
+		if (!validPos(startPos) || !validPos(goalPos))
+			throw new IndexOutOfBoundsException("The start/goal position are not valid!");
+		setStartPosition(startPos);
+		setGoalPosition(goalPos);
+		fillMazeFromBytesArray(mazeByteArr);
+	}
+	
+	/**
+	 * This method gets a byte[] and fill the maze with it values
+	 * @param mazeByteArr byte[]
+	 * @throws IndexOutOfBoundsException if the byte[] smaller/bigger from the maze size
+	 */
+	private void fillMazeFromBytesArray(byte[] mazeByteArr) {
+		if (mazeByteArr.length != ((this.floors*this.cols*this.rows)+9))	// 9 - sizeof maze dimentions, start and goal position
+			throw new IndexOutOfBoundsException("The stream doesn't contains the required amount of data for this size of maze");
+		int arrIndex = 9;	// first value of the matrix's maze in the array
+		for (int i = 0; i < this.floors; i++)
+			for (int j = 0; j < this.rows; j++)
+				for (int k = 0; k < this.cols; k++)
+					this.maze3d[i][j][k] = mazeByteArr[arrIndex++];
+	}
+
+	/**
 	 * Fills the matrix with '1'
 	 */
 	private void fillMazeWithWalls() {
@@ -42,26 +76,36 @@ public class Maze3d {
 					this.maze3d[i][j][k] = WALL;
 	}
 	
+	/**
+	 * @return Position, start position in the maze
+	 */
 	public Position getStartPosition() {
 		return startPosition;
 	}
 	
+	/**
+	 * This method sets the start position of the maze and free it (changed it to '0')
+	 * @param Position start position
+	 */
 	public void setStartPosition(Position startPositon) {
 		this.startPosition = startPositon;
 		setFree(this.startPosition);
 	}
 	
+	/**
+	 * @return Position, goal position in the maze
+	 */
 	public Position getGoalPosition() {
 		return goalPosition;
 	}
 	
+	/**
+	 * This method sets the goal position of the maze and free it (changed it to '0')
+	 * @param Position goal position
+	 */
 	public void setGoalPosition(Position goalPositon) {
 		this.goalPosition = goalPositon;
 		setFree(this.goalPosition);
-	}
-	
-	public int[][][] getMaze3d() {
-		return maze3d;
 	}
 
 	/**
