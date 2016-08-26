@@ -37,7 +37,7 @@ public class Maze3d {
 	 * Get a decompressed byte[] and build a maze from it
 	 * @throws IndexOutOfBoundsException if the start/goal position isn't valid position
 	 */
-	public Maze3d(byte[] mazeByteArr) throws IndexOutOfBoundsException {
+	public Maze3d(byte[] mazeByteArr) {
 		this.floors = mazeByteArr[0];
 		this.rows = mazeByteArr[1];
 		this.cols = mazeByteArr[2];
