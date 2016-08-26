@@ -29,6 +29,9 @@ public class Maze3dDomain<T> implements Searchable<T> {
 		this.maze3d = gen.generate(floors, rows, cols);
 	}
 	
+	/**
+	 * @return Maze3d, the maze object
+	 */
 	public Maze3d getMaze3d() {
 		return maze3d;
 	}

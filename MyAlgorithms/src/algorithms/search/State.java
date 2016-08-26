@@ -43,38 +43,70 @@ public class State<T> implements Comparable<State<T>> {
 		return visited;
 	}
 
+	/**
+	 * Set the visited status of the state
+	 * @param visited boolean
+	 */
 	public void setVisited(boolean visited) {
 		this.visited = visited;
 	}
 	
+	/**
+	 * @return cameFrom State T - the came from state of the state
+	 */
 	public State<T> getCameFrom() {
 		return cameFrom;
 	}
 	
+	/**
+	 * Set the came from state of the state
+	 * @param cameFrom State T
+	 */
 	public void setCameFrom(State<T> cameFrom) {
 		this.cameFrom = cameFrom;
 	}
 	
+	/**
+	 * @return cost double - the cost of the state
+	 */
 	public double getCost() {
 		return cost;
 	}
 	
+	/**
+	 * Set the cost of the state
+	 * @param cost double
+	 */
 	public void setCost(double cost) {
 		this.cost = cost;
 	}
 	
+	/**
+	 * @return value T -the value of the state
+	 */
 	public T getValue() {
 		return value;
 	}
 	
+	/**
+	 * Set the value of the state
+	 * @param value T
+	 */
 	public void setValue(T value) {
 		this.value = value;
 	}
 	
+	/**
+	 * @return key String -the key of the state
+	 */
 	public String getKey() {
 		return key;
 	}
 	
+	/**
+	 * Set the key of the state
+	 * @param key String
+	 */
 	public void setKey(String key) {
 		this.key = key;
 	}

@@ -14,6 +14,9 @@ public abstract class CommonSearcher<T> implements Searcher<T> {
 	
 	protected int evaluatedNodes = 0;
 	
+	/**
+	 * @return evaluatedNodes value
+	 */
 	@Override
 	public int getNumberOfNodesEvaluated() {
 		return evaluatedNodes;
