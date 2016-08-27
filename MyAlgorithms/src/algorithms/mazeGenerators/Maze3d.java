@@ -14,6 +14,7 @@ public class Maze3d {
 	private Position startPosition;
 	private Position goalPosition;
 	
+
 	public static final int FREE = 0;
 	public static final int WALL = 1;
 	
@@ -49,6 +50,24 @@ public class Maze3d {
 		setStartPosition(startPos);
 		setGoalPosition(goalPos);
 		fillMazeFromBytesArray(mazeByteArr);
+	}
+	public byte[]toByteArray(){
+	byte[]ByteArray=new byte[this.floors*this.rows*this.cols+9]; 
+	ByteArray[0]=(byte) this.floors;
+	ByteArray[1]=(byte) this.rows;
+	ByteArray[2]=(byte) this.cols;
+	ByteArray[3]=(byte) this.startPosition.z;
+	ByteArray[4]=(byte) this.startPosition.y;
+	ByteArray[5]=(byte) this.startPosition.x;
+	ByteArray[6]=(byte) this.goalPosition.z;
+	ByteArray[7]=(byte) this.goalPosition.y;
+	ByteArray[8]=(byte) this.goalPosition.x;
+	int arrIndex = 9;	// first value of the matrix's maze in the array
+	for (int z = 0; z < this.floors; z++)
+		for (int y = 0; y < this.rows;y++)
+			for (int x = 0; x < this.cols; x++)
+				ByteArray[arrIndex++]=(byte) this.maze3d[z][y][x];
+	return ByteArray;
 	}
 	
 	/**
@@ -236,4 +255,25 @@ public class Maze3d {
 	public void setFree(Position pos) {
 		maze3d[pos.z][pos.y][pos.x] = FREE;
 	}
+	
+	/**
+	 * equals
+	 * @param object obj.
+	 * check if two point are equal 
+	 * @return boolean.
+	 */
+	public boolean equals(Maze3d Maze3dOther) {
+		for(int z=0; z<floors; z++)
+			for(int y=0; y <rows; y++)
+				for(int x=0; x<cols;x++)
+					if(this.maze3d[z][y][x]!=Maze3dOther.maze3d[z][y][x]){
+						return false;
+					}
+	
+		return true;
+	}
+
 }
+	
+
+
