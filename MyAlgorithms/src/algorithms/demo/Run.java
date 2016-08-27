@@ -9,8 +9,6 @@ import java.io.OutputStream;
 import algorithms.mazeGenerators.GrowingTreeGenerator;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Maze3dGenerator;
-import algorithms.search.Maze3dDomain;
-import algorithms.search.Searchable;
 import io.MyCompressorOutputStream;
 import io.MyDecompressorInputStream;
 
