@@ -51,6 +51,13 @@ public class Maze3d {
 		setGoalPosition(goalPos);
 		fillMazeFromBytesArray(mazeByteArr);
 	}
+	/**
+	 * toByteArray
+	 * enter first the size of the maze,second the start position
+	 * ,third the goal position and last the all maze all in byte.
+	 * @return byte[]-the size of the maze,start position
+	 * ,goalposition and the all maze in bytes.
+	 */
 	public byte[]toByteArray(){
 	byte[]ByteArray=new byte[this.floors*this.rows*this.cols+9]; 
 	ByteArray[0]=(byte) this.floors;
