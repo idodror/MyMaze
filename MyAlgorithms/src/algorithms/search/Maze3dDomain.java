@@ -30,6 +30,15 @@ public class Maze3dDomain<T> implements Searchable<T> {
 	}
 	
 	/**
+	 * Constructor
+	 * Build Maze3dDomain object with exist Maze3d object
+	 * @param maze
+	 */
+	public Maze3dDomain(Maze3d maze3d) {
+		this.maze3d = maze3d;
+	}
+	
+	/**
 	 * @return Maze3d, the maze object
 	 */
 	public Maze3d getMaze3d() {
