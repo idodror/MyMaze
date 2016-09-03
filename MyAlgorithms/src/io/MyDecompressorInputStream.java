@@ -63,7 +63,7 @@ public class MyDecompressorInputStream extends InputStream {
 
 	@Override
 	public int read() throws IOException {
-		return 0;
+		return this.inBuff.read();
 	}
 
 }

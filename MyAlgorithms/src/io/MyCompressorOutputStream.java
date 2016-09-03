@@ -33,6 +33,7 @@ public class MyCompressorOutputStream extends OutputStream {
 		int currentByteValue = b[9];
 		// Count zero/ones from the array
 		int counter = 1;
+		this.outBuff.write(b.length);
 		this.outBuff.write(b, 0, 9);
 		for (int i = 10; i < b.length; i++) {
 			if (b[i] == currentByteValue) {
