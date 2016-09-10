@@ -21,22 +21,24 @@ public class Run {
 	public static void main(String[] args) throws IOException {
 		//Demo.run();
 		Maze3dGenerator gen = new GrowingTreeGenerator();
-		Maze3d maze = gen.generate(5, 5 , 5) ;
-		//... generate it   
+		Maze3d maze = gen.generate(127, 61, 61);
+		//... generate it
 	// save it to a file
 		
 		OutputStream out=new MyCompressorOutputStream( new FileOutputStream("1.maz")); 
-		out.write( (maze).toByteArray());
+		byte[] arr = maze.toByteArray();
+		out.write(arr);
 		out.flush(); 
 		out.close();  
 		InputStream in=new MyDecompressorInputStream( new FileInputStream("1.maz")); 
-		byte b[]=new byte[in.read()];
+		int size = in.read();
+		byte b[]=new byte[size];
 		in.read(b);
 		in.close();
 		Maze3d loaded=new Maze3d(b); 
-		System.out.println(loaded.toString());
-		System.out.println("another maze!");
 		System.out.println(maze.toString());
+		System.out.println("another maze!");
+		System.out.println(loaded.toString());
 		System.out.println(loaded.equals(maze));
 	}
 }

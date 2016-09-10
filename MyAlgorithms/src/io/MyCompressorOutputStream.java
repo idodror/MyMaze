@@ -3,6 +3,8 @@ package io;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.math.BigInteger;
+import java.nio.ByteBuffer;
 
 /**
  * This class represent compressor for maze3d (from any stream)
@@ -11,7 +13,7 @@ public class MyCompressorOutputStream extends OutputStream {
 
 	private OutputStream out;
 	private BufferedOutputStream outBuff;
-	private final int sizeOfBuffer = 255;
+	private final int sizeOfBuffer = 254;
 	private int currentBufferSize;
 	
 	/**
@@ -33,7 +35,8 @@ public class MyCompressorOutputStream extends OutputStream {
 		int currentByteValue = b[9];
 		// Count zero/ones from the array
 		int counter = 1;
-		this.outBuff.write(b.length);
+		byte[] sizeAsBytes = ByteBuffer.allocate(4).putInt(b.length).array();
+		this.outBuff.write(sizeAsBytes);
 		this.outBuff.write(b, 0, 9);
 		for (int i = 10; i < b.length; i++) {
 			if (b[i] == currentByteValue) {

@@ -17,7 +17,7 @@ public class Demo {
 	 */
 	public static void run() {
 		// parameters - the size of the maze
-		Searchable<Maze3d> maze = new Maze3dDomain<>(7, 7, 7);
+		Searchable<Maze3d> maze = new Maze3dDomain<>(50, 100, 100);
 		
 		System.out.println(maze);
 		Searcher<Maze3d> bfs = new BFS<Maze3d>();

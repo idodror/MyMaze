@@ -59,22 +59,22 @@ public class Maze3d {
 	 * ,goalposition and the all maze in bytes.
 	 */
 	public byte[]toByteArray(){
-	byte[]ByteArray=new byte[this.floors*this.rows*this.cols+9]; 
-	ByteArray[0]=(byte) this.floors;
-	ByteArray[1]=(byte) this.rows;
-	ByteArray[2]=(byte) this.cols;
-	ByteArray[3]=(byte) this.startPosition.z;
-	ByteArray[4]=(byte) this.startPosition.y;
-	ByteArray[5]=(byte) this.startPosition.x;
-	ByteArray[6]=(byte) this.goalPosition.z;
-	ByteArray[7]=(byte) this.goalPosition.y;
-	ByteArray[8]=(byte) this.goalPosition.x;
-	int arrIndex = 9;	// first value of the matrix's maze in the array
-	for (int z = 0; z < this.floors; z++)
-		for (int y = 0; y < this.rows;y++)
-			for (int x = 0; x < this.cols; x++)
-				ByteArray[arrIndex++]=(byte) this.maze3d[z][y][x];
-	return ByteArray;
+		byte[] ByteArray = new byte[this.floors*this.rows*this.cols+9]; 
+		ByteArray[0] = (byte) this.floors;
+		ByteArray[1] = (byte) this.rows;
+		ByteArray[2] = (byte) this.cols;
+		ByteArray[3] = (byte) this.startPosition.z;
+		ByteArray[4] = (byte) this.startPosition.y;
+		ByteArray[5] = (byte) this.startPosition.x;
+		ByteArray[6] = (byte) this.goalPosition.z;
+		ByteArray[7] = (byte) this.goalPosition.y;
+		ByteArray[8] = (byte) this.goalPosition.x;
+		int arrIndex = 9;	// first value of the matrix's maze in the array
+		for (int z = 0; z < this.floors; z++)
+			for (int y = 0; y < this.rows;y++)
+				for (int x = 0; x < this.cols; x++)
+					ByteArray[arrIndex++] = (byte)this.maze3d[z][y][x];
+		return ByteArray;
 	}
 	
 	/**
@@ -88,8 +88,10 @@ public class Maze3d {
 		int arrIndex = 9;	// first value of the matrix's maze in the array
 		for (int i = 0; i < this.floors; i++)
 			for (int j = 0; j < this.rows; j++)
-				for (int k = 0; k < this.cols; k++)
+				for (int k = 0; k < this.cols; k++) {
 					this.maze3d[i][j][k] = mazeByteArr[arrIndex++];
+					//arrIndex++;
+				}		
 	}
 
 	/**

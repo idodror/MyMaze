@@ -3,6 +3,7 @@ package io;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigInteger;
 
 /**
  * This class represent decompressor for maze3d (from any stream)
@@ -11,7 +12,7 @@ public class MyDecompressorInputStream extends InputStream {
 
 	private InputStream in;
 	private BufferedInputStream inBuff;
-	private final int sizeOfBuffer = 255;
+	private final int sizeOfBuffer = 254;
 	private int readerIndex;		// index of next free space in the byte[]
 	private int currentReadSize;	// size of last read from stream to the buffer
 	
@@ -33,7 +34,7 @@ public class MyDecompressorInputStream extends InputStream {
 	 */
 	@Override
 	public int read(byte[] b) throws IOException {
-		byte[] readStream = new byte[9];	
+		byte[] readStream = new byte[9];
 		// Read: size of maze dimensions + start position + goal position
 		this.inBuff.read(readStream, 0, 9);
 		System.arraycopy(readStream, 0, b, 0, 9);
@@ -63,7 +64,9 @@ public class MyDecompressorInputStream extends InputStream {
 
 	@Override
 	public int read() throws IOException {
-		return this.inBuff.read();
+		byte[] sizeOfData = new byte[4];
+		this.inBuff.read(sizeOfData);
+		return new BigInteger(sizeOfData).intValue();
 	}
 
 }
